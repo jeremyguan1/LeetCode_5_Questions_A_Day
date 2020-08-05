@@ -10,12 +10,10 @@ var lengthOfLongestSubstring = function(s) {
   let lib= {};
   while(i < n && j < n){
     if(!lib[s[j]]){
-      lib[s[j]] = true;
+      lib[s[j++]] = true;
       answer = Math.max(answer, j - i)
-      j++
     }else{
-      delete lib[s[i]]
-      i++
+      delete lib[s[i++]]
     }
   }
   return answer;
