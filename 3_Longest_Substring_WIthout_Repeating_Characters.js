@@ -1,12 +1,24 @@
-function lengthOfLongestSubstring(s) {
-  const map = {};
-  var left = 0;
-  
-  return s.split('').reduce((max, v, i) => {
-      left = map[v] >= left ? map[v] + 1 : left;
-      map[v] = i;
-      return Math.max(max, i - left + 1);
-  }, 0);
-}
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+  let i = 0;
+  let j = 0;
+  let n = s.length;
+  let answer = 0;
+  let lib= {};
+  while(i < n && j < n){
+    if(!lib[s[j]]){
+      lib[s[j]] = true;
+      answer = Math.max(answer, j - i)
+      j++
+    }else{
+      delete lib[s[i]]
+      i++
+    }
+  }
+  return answer;
+};
 
 lengthOfLongestSubstring("abcabcbb")
